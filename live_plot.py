@@ -4,15 +4,12 @@ from collections import deque
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-# ---- SET THIS to match your board ----
-# Check Arduino IDE: Tools > Port
-# Windows looks like 'COM3', Mac/Linux looks like '/dev/tty.usbmodemXXXX' or '/dev/ttyACM0'
 PORT = 'COM3'
 BAUD = 9600
 
 ser = serial.Serial(PORT, BAUD, timeout=1)
 
-WINDOW = 300  # how many recent points stay on screen at once
+WINDOW = 300 
 heights = deque([512] * WINDOW, maxlen=WINDOW)
 
 fig, ax = plt.subplots(figsize=(10, 5))
@@ -21,7 +18,6 @@ ax.set_facecolor('black')
 
 line, = ax.plot(range(WINDOW), heights, color='#39FF14', linewidth=1.5)
 
-# --- branding lives here, change freely, this is just text/styling ---
 ax.set_title('Hack the North 2026 \u2014 Live Profilometer Scan', color='white', fontsize=14)
 ax.set_xlabel('scan position', color='white')
 ax.set_ylabel('height (ADC reading)', color='white')
